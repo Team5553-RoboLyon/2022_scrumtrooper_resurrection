@@ -74,7 +74,7 @@ void RobotContainer::ConfigureControls() {
           MoveHood(&m_AdjustableHood, 0),
           frc2::SequentialCommandGroup(frc2::WaitCommand(4_s), MoveTurret(&m_Turret, 0))));
 
-  m_ShooterSimplifiedButton.WhileActiveOnce(NewShoot(&m_Shooter));   
+  m_ShooterSimplifiedButton.WhileActiveOnce(NewShoot(&m_Shooter,&m_Feeder) );   
 
 
   // Winch Buttons

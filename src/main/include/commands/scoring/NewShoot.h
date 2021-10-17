@@ -13,10 +13,11 @@
 #include <networktables/NetworkTableEntry.h>
 
 #include "subsystems/Shooter.h"
+#include "subsystems/Feeder.h"
 
 class NewShoot : public frc2::CommandHelper<frc2::CommandBase, NewShoot> {
  public:
-  explicit NewShoot(Shooter* pshooter);
+  explicit NewShoot(Shooter* pshooter, Feeder* pfeeder);
 
   void Initialize() override;
 
@@ -29,6 +30,8 @@ class NewShoot : public frc2::CommandHelper<frc2::CommandBase, NewShoot> {
 
  private:
   Shooter* m_pShooter;
+  Feeder* m_pFeeder;
+
 
   //nt::NetworkTableEntry m_ChameleonPitchEntry;
   //nt::NetworkTableEntry m_ChameleonIsValidEntry;

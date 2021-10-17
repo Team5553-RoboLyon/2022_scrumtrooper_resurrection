@@ -8,7 +8,7 @@
 #include "subsystems/Feeder.h"
 
 Feeder::Feeder() {
-  m_ConveyorMotor.SetInverted(false);
+  m_ConveyorMotor.SetInverted(true);
   m_FeederMotor.SetInverted(false);
   m_ConveyorMotor.ConfigVoltageCompSaturation(10);
   m_FeederMotor.ConfigVoltageCompSaturation(10);
