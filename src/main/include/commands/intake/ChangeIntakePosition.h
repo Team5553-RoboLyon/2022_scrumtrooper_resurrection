@@ -13,7 +13,8 @@
 #include "subsystems/Intake.h"
 
 class ChangeIntakePosition
-    : public frc2::CommandHelper<frc2::InstantCommand, ChangeIntakePosition> {
+    : public frc2::CommandHelper<frc2::InstantCommand, ChangeIntakePosition> 
+{
  public:
   explicit ChangeIntakePosition(Intake* pintake);
 

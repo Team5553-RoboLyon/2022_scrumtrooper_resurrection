@@ -12,7 +12,8 @@
 
 #include "subsystems/Intake.h"
 
-class TakeCell : public frc2::CommandHelper<frc2::CommandBase, TakeCell> {
+class TakeCell : public frc2::CommandHelper<frc2::CommandBase, TakeCell> 
+{
  public:
   explicit TakeCell(Intake* pintake);
 

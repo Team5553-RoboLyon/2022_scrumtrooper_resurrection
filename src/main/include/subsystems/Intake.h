@@ -8,12 +8,13 @@
 #pragma once
 
 #include <frc/DoubleSolenoid.h>
-#include <frc/VictorSP.h>
+#include <ctre/phoenix/motorcontrol/can/VictorSPX.h>
 #include <frc2/command/SubsystemBase.h>
 
 #include "Constants.h"
 
-class Intake : public frc2::SubsystemBase {
+class Intake : public frc2::SubsystemBase 
+{
  public:
   enum class IntakePosition { kOpened, kClosed };
   Intake();
@@ -21,11 +22,13 @@ class Intake : public frc2::SubsystemBase {
   void Close();
   void Open();
   void ChangePosition();
+  void ChangeMode();
   void Activate();
   void Stop();
 
  private:
   IntakePosition m_Position;
   frc::DoubleSolenoid m_Solenoid{INTAKE_SOLENOID_A, INTAKE_SOLENOID_B};
-  frc::VictorSP m_Motor{INTAKE_MOTOR};
+  ctre::phoenix::motorcontrol::can::VictorSPX m_Motor{INTAKE_MOTOR};
+
 };

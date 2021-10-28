@@ -45,7 +45,7 @@ class RobotContainer {
   frc2::JoystickButton m_XButton{&m_DriverController, 3};
   frc2::JoystickButton m_YButton{&m_DriverController, 4};
   frc2::JoystickButton m_BumperLeftButton{&m_DriverController, 11};// etait 5 mis à 11 test
-  frc2::JoystickButton m_BumperRightButton{&m_DriverController, 6};
+  frc2::JoystickButton m_BumperRightButton{&m_DriverController, 6};//Intake : Change Intake position
   frc2::JoystickButton m_BackButton{&m_DriverController, 7};
   frc2::JoystickButton m_StartButton{&m_DriverController, 8};
   frc2::JoystickButton m_StickLeftButton{&m_DriverController, 9};
@@ -74,7 +74,7 @@ class RobotContainer {
       [this] { return frc::DriverStation::GetInstance().GetMatchTime() < 40; }};
 
   frc::SendableChooser<frc2::Command*> m_AutoChooser;
-
+  
   void ConfigureControls();
   void ConfigureTestControls();
 };

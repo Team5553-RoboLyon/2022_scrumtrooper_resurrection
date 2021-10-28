@@ -24,20 +24,20 @@ constexpr int SHOOTER_LEFT_MOTOR = 6;
 constexpr int SHOOTER_RIGHT_MOTOR = 7;
 
 // Feeder
-constexpr int FEEDER_MOTOR = 11;
+constexpr int FEEDER_MOTOR = 14;
 
 // Conveyor
-constexpr int CONVEYOR_MOTOR = 10;
+constexpr int CONVEYOR_MOTOR = 12;
 
 // AdjustableHood IDs
-constexpr int ADJUSTABLE_HOOD_MOTOR = 13;
+constexpr int ADJUSTABLE_HOOD_MOTOR = 11;
 
 // ############### PWM IDs ###############
 // Intake
-constexpr int INTAKE_MOTOR = 14;
+constexpr int INTAKE_MOTOR = 13;
 
 // Turret
-constexpr int TURRET_MOTOR = 12;
+constexpr int TURRET_MOTOR = 10;
 
 // ControlPanelManipulator
 constexpr int CONTROL_PANEL_MANIPULATOR_MOTOR = 4;//TOpas la ?
@@ -57,7 +57,7 @@ constexpr int TURRET_ENCODER= 9;
 //constexpr int TURRET_ENCODER_B = 5;TODO pas la ?
 
 // AdjustableHood
-constexpr int ADJUSTABLE_HOOD_ENCODER = 7;
+constexpr int ADJUSTABLE_HOOD_ENCODER = 5;
 
 // TelescopicArm
 constexpr int TELESCOPIC_ARM_ENCODER = 20;//TODO pas la ?
@@ -84,7 +84,7 @@ constexpr double ADJUSTABLE_HOOD_D_GAIN = 0.00025;
 constexpr double ADJUSTABLE_HOOD_GRAVITY_GAIN = 0.05;
 
 // Intake
-constexpr double INTAKE_OPENED_SPEED = 0.6;
+constexpr double INTAKE_OPENED_SPEED = 0.8;
 constexpr double INTAKE_CLOSED_SPEED = 0.2;
 
 // Feeder

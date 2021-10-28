@@ -9,10 +9,11 @@
 
 TakeCell::TakeCell(Intake* pintake) : m_pIntake(pintake) { AddRequirements(m_pIntake); }
 
-void TakeCell::Initialize() { m_pIntake->Activate(); }
+void TakeCell::Initialize() { m_pIntake->Activate(); }//intake.cpp Activate()
 
 void TakeCell::Execute() {}
 
-void TakeCell::End(bool interrupted) { m_pIntake->Stop(); }
+void TakeCell::End(bool interrupted) { m_pIntake->Stop(); }// met les moteurs à 0
+//intake.cpp Stop()
 
 bool TakeCell::IsFinished() { return false; }

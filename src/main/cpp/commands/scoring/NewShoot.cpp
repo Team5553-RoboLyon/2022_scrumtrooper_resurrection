@@ -25,7 +25,7 @@ NewShoot::NewShoot(Shooter* pshooter, Feeder* pfeeder)   {
 void NewShoot::Initialize() 
 { 
   m_pShooter->SetRamp(1.0);
-  m_pShooter->Shoot(0.5); 
+  m_pShooter->Shoot(1.0);  
   m_pFeeder->Activate();
 
 

@@ -12,7 +12,8 @@
 
 #include "subsystems/Intake.h"
 
-class EmergencyIntake : public frc2::CommandHelper<frc2::InstantCommand, EmergencyIntake> {
+class EmergencyIntake : public frc2::CommandHelper<frc2::InstantCommand, EmergencyIntake> 
+{
  public:
   EmergencyIntake(Intake* pintake);
 

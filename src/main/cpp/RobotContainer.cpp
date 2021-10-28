@@ -23,6 +23,7 @@
 #include "commands/endgame/LiftRobot.h"
 #include "commands/endgame/RaiseHook.h"
 #include "commands/intake/ChangeIntakePosition.h"
+#include "commands/intake/ChangeIntakeMode.h"
 #include "commands/intake/EmergencyIntake.h"
 #include "commands/intake/TakeCell.h"
 #include "commands/scoring/AdjustHood.h"
@@ -62,8 +63,9 @@ frc2::Command* RobotContainer::GetAutonomousCommand() { return m_AutoChooser.Get
 void RobotContainer::ConfigureControls() {
   //########## Xbox Controller ##########
   // Intake buttons
-  m_BumperRightButton.WhenPressed(ChangeIntakePosition(&m_Intake));
+  m_BumperRightButton.WhenPressed(ChangeIntakePosition(&m_Intake));//quand bouton presse changeIntake
   m_AxisRightTrigger.WhileActiveContinous(TakeCell(&m_Intake));
+  m_AButton.WhileActiveContinous(ChangeIntakeMode(&m_Intake));
 
   // Shoot buttons
   m_BumperLeftButton.ToggleWhenActive(PrepShoot(&m_Shooter));
@@ -82,9 +84,9 @@ void RobotContainer::ConfigureControls() {
   // m_xButton.WhileHeld(DropRobot(&m_winch));
 
   // TelescopicArm Buttons
-  m_AButton.WhileHeld(DropHook(&m_TelescopicArm, &m_Intake, &m_Drivetrain));
-  m_BButton.WhenPressed(MoveTurret(&m_Turret, 0))
-      .WhileHeld(RaiseHook(&m_TelescopicArm, &m_Intake, &m_Drivetrain));
+  //m_AButton.WhileHeld(DropHook(&m_TelescopicArm, &m_Intake, &m_Drivetrain));
+  //m_BButton.WhenPressed(MoveTurret(&m_Turret, 0))
+     // .WhileHeld(RaiseHook(&m_TelescopicArm, &m_Intake, &m_Drivetrain));
 
   //########## Panel ##########
   m_RedButton.WhileHeld(EmergencyIntake(&m_Intake), false);

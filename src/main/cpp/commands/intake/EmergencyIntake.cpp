@@ -9,4 +9,5 @@
 
 EmergencyIntake::EmergencyIntake(Intake* intake) : m_pIntake(intake) { AddRequirements(m_pIntake); }
 
-void EmergencyIntake::Initialize() { m_pIntake->Close(); }
+void EmergencyIntake::Initialize() { m_pIntake->Close(); }// remonte l'intake
+

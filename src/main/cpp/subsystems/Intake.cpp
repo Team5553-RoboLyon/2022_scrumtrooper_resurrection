@@ -7,37 +7,50 @@
 
 #include "subsystems/Intake.h"
 
-Intake::Intake() {
-  m_Motor.SetInverted(true);
+Intake::Intake() 
+{
+  m_Motor.SetInverted(true);//inverse le sens du moteur
   Close();
 }
 
-void Intake::Open() {
+void Intake::Open() 
+{
   Stop();
-  m_Solenoid.Set(frc::DoubleSolenoid::Value::kForward);
-  m_Position = IntakePosition::kOpened;
+  m_Solenoid.Set(frc::DoubleSolenoid::Value::kForward);//descend l'intake
+  m_Position = IntakePosition::kOpened;//met m_Position à 0
 }
 
-void Intake::Close() {
+void Intake::Close() 
+{
   Stop();
-  m_Solenoid.Set(frc::DoubleSolenoid::Value::kReverse);
-  m_Position = IntakePosition::kClosed;
+  m_Solenoid.Set(frc::DoubleSolenoid::Value::kReverse);//remonte l'intake
+  m_Position = IntakePosition::kClosed;//met m_Position à 1
 }
 
-void Intake::ChangePosition() {
-  if (m_Position == IntakePosition::kOpened) {
+
+
+void Intake::ChangePosition() // change la position de l'intake
+{ 
+  if (m_Position == IntakePosition::kOpened) //si m_Position = 0
+  { 
     Close();
-  } else {
+  } 
+  else 
+  {
     Open();
   }
 }
 
-void Intake::Activate() {
-  if (m_Position == IntakePosition::kOpened) {
-    m_Motor.Set(INTAKE_OPENED_SPEED);
-  } else {
-    m_Motor.Set(INTAKE_CLOSED_SPEED);
+void Intake::Activate() 
+{
+  if (m_Position == IntakePosition::kOpened) //si m_Position = 0
+  {
+    m_Motor.Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput,INTAKE_OPENED_SPEED);//lance les moteurs
+  } 
+  else 
+  {
+    m_Motor.Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput,INTAKE_OPENED_SPEED);//?????
   }
 }
 
-void Intake::Stop() { m_Motor.Set(0.0); }
+void Intake::Stop() { m_Motor.Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput,0.0); }//arrete les moteurs
