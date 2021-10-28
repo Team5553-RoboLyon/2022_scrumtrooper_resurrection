@@ -14,6 +14,7 @@
 #include "Constants.h"
 
 #define TOTAL_CHARGE_TIME 1.5
+#define READY_SPEED 4000
 
 class Shooter : public frc2::SubsystemBase {
  public:
@@ -26,6 +27,8 @@ class Shooter : public frc2::SubsystemBase {
   double GetTimer();
   void ResetTimer();
   void StopTimer();
+  
+  bool isReady();
 
  private:
   rev::CANSparkMax m_RightMotor{SHOOTER_RIGHT_MOTOR, rev::CANSparkMax::MotorType::kBrushless};

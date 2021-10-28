@@ -67,5 +67,5 @@ class Drivetrain : public frc2::SubsystemBase {
   double m_DoubleReceiveBufferRight[DRIVETRAIN_ULTRASONIC_SIZE];
   double m_DoubleReceiveBufferLeft[DRIVETRAIN_ULTRASONIC_SIZE];
   int m_WarningLevel = 0;
-  Drivetrain::SpeedMode m_SpeedMode = Drivetrain::SpeedMode::slow;
+  Drivetrain::SpeedMode m_SpeedMode = Drivetrain::SpeedMode::quick;
 };

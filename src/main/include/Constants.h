@@ -84,7 +84,7 @@ constexpr double ADJUSTABLE_HOOD_D_GAIN = 0.00025;
 constexpr double ADJUSTABLE_HOOD_GRAVITY_GAIN = 0.05;
 
 // Intake
-constexpr double INTAKE_OPENED_SPEED = 0.8;
+constexpr double INTAKE_OPENED_SPEED = 0.75;
 constexpr double INTAKE_CLOSED_SPEED = 0.2;
 
 // Feeder

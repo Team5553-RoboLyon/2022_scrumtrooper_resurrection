@@ -21,6 +21,7 @@ Shooter::Shooter() {
 }
 
 void Shooter::Shoot(double power) {
+
   m_RightMotor.Set(power);
 }
 
@@ -39,6 +40,15 @@ void Shooter::ResetTimer() {
 void Shooter::StopTimer() {
   m_Timer.Reset();
   m_Timer.Stop();
+}
+
+bool Shooter::isReady(){
+  std::cout << m_RightMotor.GetEncoder().GetVelocity() << std::endl;
+  if ((m_RightMotor.GetEncoder().GetVelocity() >= READY_SPEED) && (m_LeftMotor.GetEncoder().GetVelocity() >= READY_SPEED)){
+    return true;
+  }else{
+    return false;
+  }
 }
 
 void Shooter::Periodic() {}

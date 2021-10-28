@@ -31,6 +31,8 @@ class NewShoot : public frc2::CommandHelper<frc2::CommandBase, NewShoot> {
  private:
   Shooter* m_pShooter;
   Feeder* m_pFeeder;
+  enum state{ starting, running };
+  NewShoot::state m_state;
 
 
   //nt::NetworkTableEntry m_ChameleonPitchEntry;

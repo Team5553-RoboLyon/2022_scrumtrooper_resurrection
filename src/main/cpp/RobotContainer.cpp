@@ -65,7 +65,7 @@ void RobotContainer::ConfigureControls() {
   // Intake buttons
   m_BumperRightButton.WhenPressed(ChangeIntakePosition(&m_Intake));//quand bouton presse changeIntake
   m_AxisRightTrigger.WhileActiveContinous(TakeCell(&m_Intake));
-  m_AButton.WhileActiveContinous(ChangeIntakeMode(&m_Intake));
+  m_AButton.WhileActiveOnce(ChangeIntakeMode(&m_Intake));
 
   // Shoot buttons
   m_BumperLeftButton.ToggleWhenActive(PrepShoot(&m_Shooter));

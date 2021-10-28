@@ -26,23 +26,30 @@ void NewShoot::Initialize()
 { 
   m_pShooter->SetRamp(1.0);
   m_pShooter->Shoot(1.0);  
-  m_pFeeder->Activate();
+  m_state = NewShoot::state::starting;
+  
 
 
 }
 
 void NewShoot::Execute() {
-  /*double power = 1;
-   double pitch = m_ChameleonPitchEntry.GetDouble(0.0);
-  if (pitch < 2 && pitch > -2) {
-    power = 0.96;
-  } else {
-    power = 1;
-    // power = pitch * pitch * 0.0033 + pitch * 0.0358 + 0.96;
-    // pitch * pitch * 0.00329 + pitch * 0.0358 + 0.949;
-    // pitch * pitch * 0.00215 + pitch * 0.0247 + 0.907
-  }
-  m_pShooter->Shoot(power);*/
+  switch (NewShoot::m_state)
+  {
+  case NewShoot::state::starting:
+    if (m_pShooter->isReady()){
+      NewShoot::m_state=NewShoot::state::running;
+      m_pFeeder->Activate();
+    }
+    break;
+  case NewShoot::state::running:
+    if (!m_pShooter->isReady()){
+      m_state=NewShoot::state::starting;
+      m_pFeeder->Stop();
+    }
+  break;
+  default:
+    break;
+}
 }
 
 void NewShoot::End(bool interrupted)
