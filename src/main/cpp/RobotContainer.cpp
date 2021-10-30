@@ -51,8 +51,8 @@ RobotContainer::RobotContainer() {
   frc::Shuffleboard::GetTab("Autonomous").Add(m_AutoChooser);
 
   m_Drivetrain.SetDefaultCommand(
-      Drive([this] { return -m_DriverController.GetY(frc::GenericHID::JoystickHand::kLeftHand); },
-            [this] { return m_DriverController.GetX(frc::GenericHID::JoystickHand::kRightHand); },
+      Drive([this] { return -m_DriverControllerLeft.GetY(frc::GenericHID::JoystickHand::kLeftHand); },
+            [this] { return m_DriverControllerRight.GetX(frc::GenericHID::JoystickHand::kRightHand); },
             &m_Drivetrain));
 
   ConfigureControls();
@@ -63,9 +63,9 @@ frc2::Command* RobotContainer::GetAutonomousCommand() { return m_AutoChooser.Get
 void RobotContainer::ConfigureControls() {
   //########## Xbox Controller ##########
   // Intake buttons
-  m_BumperRightButton.WhenPressed(ChangeIntakePosition(&m_Intake));//quand bouton presse changeIntake
+  m_BumperPositionButton.WhenPressed(ChangeIntakePosition(&m_Intake));//quand bouton presse changeIntake
   m_AxisRightTrigger.WhileActiveContinous(TakeCell(&m_Intake));
-  m_AButton.WhileActiveOnce(ChangeIntakeMode(&m_Intake));
+  m_IntakeModeButton.WhileActiveOnce(ChangeIntakeMode(&m_Intake));
 
   // Shoot buttons
   m_BumperLeftButton.ToggleWhenActive(PrepShoot(&m_Shooter));
