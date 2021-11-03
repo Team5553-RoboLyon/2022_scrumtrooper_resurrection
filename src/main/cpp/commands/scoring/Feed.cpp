@@ -18,7 +18,7 @@ Feed::Feed(Feeder* pfeeder, Intake* pintake, Shooter* pshooter, bool enable_inta
   }
 }
 
-void Feed::Initialize() { m_Timeout = std::max(TOTAL_CHARGE_TIME, m_pShooter->GetTimer()) + 1.5; }
+void Feed::Initialize() { m_Timeout = std::max(TOTAL_CHARGE_TIME, m_pShooter->GetTimer()) + 2.0;}
 
 void Feed::Execute() {
   if (m_pShooter->GetTimer() >= m_Timeout) {

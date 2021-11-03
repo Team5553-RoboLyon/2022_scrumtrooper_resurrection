@@ -10,16 +10,17 @@
 #include <frc/DutyCycleEncoder.h>
 #include <frc/VictorSP.h>
 #include <frc2/command/PIDSubsystem.h>
+#include <ctre/phoenix/motorcontrol/can/VictorSPX.h>
 
 
 #include "Constants.h"
 
-class Turret : public frc2::PIDSubsystem {
+class Turret/* : public frc2::PIDSubsystem */{
  public:
   Turret();
 
-  void UseOutput(double output, double setpoint) override;
-  double GetMeasurement() override;
+  void UseOutput(double output, double setpoint);
+  double GetMeasurement();
   void SetClampedSetpoint(double setpoint);
 
   void Stop();
@@ -27,6 +28,7 @@ class Turret : public frc2::PIDSubsystem {
   void TurnRight();
 
  private:
-  frc::VictorSP m_Motor{TURRET_MOTOR};
-  frc::DutyCycleEncoder m_Encoder{TURRET_ENCODER};
+  //frc::VictorSP m_Motor{TURRET_MOTOR};
+  //frc::DutyCycleEncoder m_Encoder{TURRET_ENCODER};
+  ctre::phoenix::motorcontrol::can::VictorSPX m_TurretMotor{TURRET_MOTOR};
 };

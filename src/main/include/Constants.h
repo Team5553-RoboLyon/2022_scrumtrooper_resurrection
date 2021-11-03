@@ -84,7 +84,7 @@ constexpr double ADJUSTABLE_HOOD_D_GAIN = 0.00025;
 constexpr double ADJUSTABLE_HOOD_GRAVITY_GAIN = 0.05;
 
 // Intake
-constexpr double INTAKE_OPENED_SPEED = 0.75;
+constexpr double INTAKE_OPENED_SPEED = 0.6;
 constexpr double INTAKE_CLOSED_SPEED = 0.2;
 
 // Feeder
@@ -93,7 +93,7 @@ constexpr double CONVEYOR_SPEED = 0.4;
 
 // Turret
 constexpr double TURRET_POSITION_CONVERSION_FACTOR = -360.0 * ((16.0 / 132.0) / 2048.0);
-constexpr double TURRET_SPEED = 0.2;
+constexpr double TURRET_SPEED = 0.1;
 constexpr double TURRET_MAX_POSITION = 45.0;
 constexpr double TURRET_MAX_SPEED = 0.4;
 constexpr double TURRET_P_GAIN = 0.0503;
@@ -101,8 +101,9 @@ constexpr double TURRET_I_GAIN = 0.004;
 constexpr double TURRET_D_GAIN = 0.002;
 
 // Shooter
-constexpr double SHOOTER_PREP_SHOOT_SPEED = 0.8;
+constexpr double SHOOTER_PREP_SHOOT_SPEED = 1.0;
 constexpr double SHOOTER_PREP_SHOOT_RAMP = 2.0;
+
 
 // ControlPanelManipulator
 constexpr double CONTROL_PANEL_MANIPULATOR_SPEED = 0.0;

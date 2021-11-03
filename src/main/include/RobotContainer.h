@@ -43,16 +43,19 @@ class RobotContainer {
   frc::Joystick m_DriverControllerRight{1};
   // frc::XboxController m_DriverController{0};
   frc2::JoystickButton m_IntakeModeButton{&m_DriverControllerLeft, 1};
-  frc2::JoystickButton m_BButton{&m_DriverControllerLeft, 2};
+  frc2::JoystickButton m_BButton{&m_DriverControllerLeft, 6};
   frc2::JoystickButton m_XButton{&m_DriverControllerLeft, 3};
   frc2::JoystickButton m_YButton{&m_DriverControllerLeft, 4};
-  frc2::JoystickButton m_BumperLeftButton{&m_DriverControllerLeft, 11};// etait 5 mis à 11 test
-  frc2::JoystickButton m_BumperPositionButton{&m_DriverControllerLeft, 6};//Intake : Change Intake position
+  frc2::JoystickButton m_ZButton{&m_DriverControllerRight, 3};
+  frc2::JoystickButton m_HButton{&m_DriverControllerRight, 4};
+  frc2::JoystickButton m_BumperLeftButton{&m_DriverControllerRight, 2};// etait 5 mis à 11 test
+  frc2::JoystickButton m_BumperPositionButton{&m_DriverControllerLeft, 2};//Intake : Change Intake position
   frc2::JoystickButton m_BackButton{&m_DriverControllerLeft, 7};
   frc2::JoystickButton m_StartButton{&m_DriverControllerLeft, 8};
   frc2::JoystickButton m_StickLeftButton{&m_DriverControllerLeft, 9};
+
   frc2::JoystickButton m_StickRightButton{&m_DriverControllerLeft, 10};
-  frc2::JoystickButton m_ShooterSimplifiedButton{&m_DriverControllerLeft, 5};
+  frc2::JoystickButton m_ShooterSimplifiedButton{&m_DriverControllerRight, 1};
 
 
   frc::Joystick m_DriverPanel{2};

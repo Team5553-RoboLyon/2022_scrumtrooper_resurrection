@@ -15,6 +15,7 @@ Intake::Intake()
 
 void Intake::Open() 
 {
+  std::cout << "open" << std::endl;
   Stop();
   m_Solenoid.Set(frc::DoubleSolenoid::Value::kForward);//descend l'intake
   m_Position = IntakePosition::kOpened;//met m_Position à 0
@@ -22,8 +23,11 @@ void Intake::Open()
 
 void Intake::Close() 
 {
+    std::cout << "close" << std::endl;
+
   Stop();
   m_Solenoid.Set(frc::DoubleSolenoid::Value::kReverse);//remonte l'intake
+
   m_Position = IntakePosition::kClosed;//met m_Position à 1
 }
 
@@ -49,7 +53,7 @@ void Intake::Activate()
   } 
   else 
   {
-    m_Motor.Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput,INTAKE_OPENED_SPEED);//?????
+    m_Motor.Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput,INTAKE_OPENED_SPEED);
   }
 }
 

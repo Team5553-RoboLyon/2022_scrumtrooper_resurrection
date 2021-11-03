@@ -35,6 +35,8 @@
 #include "commands/scoring/PrepShoot.h"
 #include "commands/scoring/Shoot.h"
 #include "commands/scoring/NewShoot.h"
+#include "commands/scoring/AdjustTurretLeftGasp.h"
+#include "commands/scoring/AdjustTurretRightGasp.h"
 
 
 
@@ -51,8 +53,8 @@ RobotContainer::RobotContainer() {
   frc::Shuffleboard::GetTab("Autonomous").Add(m_AutoChooser);
 
   m_Drivetrain.SetDefaultCommand(
-      Drive([this] { return -m_DriverControllerLeft.GetY(frc::GenericHID::JoystickHand::kLeftHand); },
-            [this] { return m_DriverControllerRight.GetX(frc::GenericHID::JoystickHand::kRightHand); },
+      Drive([this] { return -m_DriverControllerLeft.GetY(); },
+            [this] { return m_DriverControllerRight.GetZ(); },
             &m_Drivetrain));
 
   ConfigureControls();
@@ -65,7 +67,7 @@ void RobotContainer::ConfigureControls() {
   // Intake buttons
   m_BumperPositionButton.WhenPressed(ChangeIntakePosition(&m_Intake));//quand bouton presse changeIntake
   m_AxisRightTrigger.WhileActiveContinous(TakeCell(&m_Intake));
-  m_IntakeModeButton.WhileActiveOnce(ChangeIntakeMode(&m_Intake));
+  m_IntakeModeButton.ToggleWhenActive(ChangeIntakeMode(&m_Intake));
 
   // Shoot buttons
   m_BumperLeftButton.ToggleWhenActive(PrepShoot(&m_Shooter));
@@ -76,7 +78,10 @@ void RobotContainer::ConfigureControls() {
           MoveHood(&m_AdjustableHood, 0),
           frc2::SequentialCommandGroup(frc2::WaitCommand(4_s), MoveTurret(&m_Turret, 0))));
 
-  m_ShooterSimplifiedButton.WhileActiveOnce(NewShoot(&m_Shooter,&m_Feeder) );   
+  m_ShooterSimplifiedButton.WhileActiveOnce(NewShoot(&m_Shooter,&m_Feeder) ); 
+
+  m_ZButton.WhenPressed(AdjustTurretLeftGasp(&m_Turret));  
+  m_HButton.WhenPressed(AdjustTurretRightGasp(&m_Turret)); 
 
 
   // Winch Buttons
@@ -89,9 +94,10 @@ void RobotContainer::ConfigureControls() {
      // .WhileHeld(RaiseHook(&m_TelescopicArm, &m_Intake, &m_Drivetrain));
 
   //########## Panel ##########
-  m_RedButton.WhileHeld(EmergencyIntake(&m_Intake), false);
-  m_YellowButton.WhileHeld(FeederUnblock(&m_Feeder));
+  //m_RedButton.WhileHeld(EmergencyIntake(&m_Intake), false);
+  //m_YellowButton.WhileHeld(FeederUnblock(&m_Feeder));
 
 }
 
 void RobotContainer::ConfigureTestControls() {}
+
