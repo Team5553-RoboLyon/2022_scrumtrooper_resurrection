@@ -15,20 +15,15 @@
 
 #include "Constants.h"
 
-class Turret/* : public frc2::PIDSubsystem */{
+class Turret : public frc2::SubsystemBase
+{
  public:
   Turret();
 
-  void UseOutput(double output, double setpoint);
-  double GetMeasurement();
-  void SetClampedSetpoint(double setpoint);
-
   void Stop();
-  void TurnLeft();
-  void TurnRight();
+  void Turn(double speed);
+
 
  private:
-  //frc::VictorSP m_Motor{TURRET_MOTOR};
-  //frc::DutyCycleEncoder m_Encoder{TURRET_ENCODER};
   ctre::phoenix::motorcontrol::can::VictorSPX m_TurretMotor{TURRET_MOTOR};
 };

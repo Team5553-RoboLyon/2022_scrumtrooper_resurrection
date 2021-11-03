@@ -1,10 +1,3 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2019 FIRST. All Rights Reserved.                             */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
-
 #pragma once
 
 #include <frc2/command/CommandBase.h>
@@ -14,11 +7,11 @@
 
 #include "subsystems/AdjustableHood.h"
 
-#define HOOD_BUFFER_SIZE 3
+#define BUFFER_SIZE 3
 
 class AdjustHood : public frc2::CommandHelper<frc2::CommandBase, AdjustHood> {
  public:
-  explicit AdjustHood(AdjustableHood* padjustable_hood);
+    AdjustHood(AdjustableHood* padjustableHood,std::function<double()> hood);
 
   void Initialize() override;
 
@@ -30,10 +23,6 @@ class AdjustHood : public frc2::CommandHelper<frc2::CommandBase, AdjustHood> {
 
  private:
   AdjustableHood* m_pAdjustableHood;
-
-  nt::NetworkTableEntry m_ChameleonPitchEntry;
-  nt::NetworkTableEntry m_ChameleonIsValidEntry;
-  double m_BufferPitch[HOOD_BUFFER_SIZE] = {0};
-  double m_BufferPitchSorted[HOOD_BUFFER_SIZE] = {0};
-  unsigned int m_BufferCount;
+  std::function<double()> m_hood;
+  
 };

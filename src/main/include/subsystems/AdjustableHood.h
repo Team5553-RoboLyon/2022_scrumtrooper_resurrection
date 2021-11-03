@@ -13,25 +13,15 @@
 
 #include "Constants.h"
 
-class AdjustableHood : public frc2::PIDSubsystem {
+class AdjustableHood : public frc2::SubsystemBase
+{
  public:
   AdjustableHood();
 
-  void UseOutput(double output, double setpoint) override;
-  double GetMeasurement() override;
-  void SetClampedSetpoint(double setpoint);
-
-  void ResetEncoder();
-
-  void Close();
-  void GoUp();
-  void GoDown();
-  void Unblock();
   void Stop();
+  void Turn(double speed);
+
 
  private:
-  ctre::phoenix::motorcontrol::can::VictorSPX m_Motor{ADJUSTABLE_HOOD_MOTOR};
-  frc::DutyCycleEncoder m_Encoder{ADJUSTABLE_HOOD_ENCODER};
-  int m_LockedCount = 0;
-  double m_PrevVelocityError;
+  ctre::phoenix::motorcontrol::can::VictorSPX m_AdjustMotor{ADJUSTABLE_HOOD_MOTOR};
 };

@@ -14,43 +14,36 @@
 #include <frc2/command/SequentialCommandGroup.h>
 #include <frc2/command/WaitCommand.h>
 
-#include "commands/auto/ComplexAuto.h"
-#include "commands/auto/SimpleAuto.h"
+
 #include "commands/driving/AutoDrive.h"
 #include "commands/driving/Drive.h"
-#include "commands/endgame/DropHook.h"
-#include "commands/endgame/DropRobot.h"
-#include "commands/endgame/LiftRobot.h"
-#include "commands/endgame/RaiseHook.h"
 #include "commands/intake/ChangeIntakePosition.h"
 #include "commands/intake/ChangeIntakeMode.h"
 #include "commands/intake/EmergencyIntake.h"
 #include "commands/intake/TakeCell.h"
-#include "commands/scoring/AdjustHood.h"
-#include "commands/scoring/AdjustTurret.h"
 #include "commands/scoring/Feed.h"
 #include "commands/scoring/FeederUnblock.h"
-#include "commands/scoring/MoveHood.h"
-#include "commands/scoring/MoveTurret.h"
 #include "commands/scoring/PrepShoot.h"
 #include "commands/scoring/Shoot.h"
 #include "commands/scoring/NewShoot.h"
-#include "commands/scoring/AdjustTurretLeftGasp.h"
-#include "commands/scoring/AdjustTurretRightGasp.h"
+#include "commands/scoring/AdjustTurretGasp.h"
+#include "commands/scoring/AdjustHood.h"
+
+
 
 
 
 
 RobotContainer::RobotContainer() {
-  m_AutoChooser.AddOption("Shoot + Reculer",
-                          new SimpleAuto(&m_Shooter, &m_Turret, &m_AdjustableHood, &m_Feeder,
-                                         &m_Intake, &m_Drivetrain));
+  //m_AutoChooser.AddOption("Shoot + Reculer",
+                          //new SimpleAuto(&m_Shooter, &m_Turret, &m_AdjustableHood, &m_Feeder,
+                            //             &m_Intake, &m_Drivetrain));
 
-  m_AutoChooser.AddOption("Shoot + TakeCells + Shoot",
-                          new ComplexAuto(&m_Shooter, &m_Turret, &m_AdjustableHood, &m_Feeder,
-                                          &m_Intake, &m_Drivetrain));
+ // m_AutoChooser.AddOption("Shoot + TakeCells + Shoot",
+                          //new ComplexAuto(&m_Shooter, &m_Turret, &m_AdjustableHood, &m_Feeder,
+                            //              &m_Intake, &m_Drivetrain));
 
-  frc::Shuffleboard::GetTab("Autonomous").Add(m_AutoChooser);
+ // frc::Shuffleboard::GetTab("Autonomous").Add(m_AutoChooser);
 
   m_Drivetrain.SetDefaultCommand(
       Drive([this] { return -m_DriverControllerLeft.GetY(); },
@@ -73,19 +66,28 @@ void RobotContainer::ConfigureControls() {
   m_BumperLeftButton.ToggleWhenActive(PrepShoot(&m_Shooter));
   m_AxisLeftTrigger
       .WhileActiveContinous(frc2::ParallelCommandGroup(
-          AdjustHood(&m_AdjustableHood), Shoot(&m_Shooter), Feed(&m_Feeder, &m_Intake, &m_Shooter)))
-      .WhenInactive(frc2::ParallelCommandGroup(
-          MoveHood(&m_AdjustableHood, 0),
-          frc2::SequentialCommandGroup(frc2::WaitCommand(4_s), MoveTurret(&m_Turret, 0))));
+           Shoot(&m_Shooter), Feed(&m_Feeder, &m_Intake, &m_Shooter)));
+          
+      //.WhenInactive(frc2::ParallelCommandGroup(
+          //MoveHood(&m_AdjustableHood, 0),
+          //frc2::SequentialCommandGroup(frc2::WaitCommand(4_s), MoveTurret(&m_Turret, 0))));
 
   m_ShooterSimplifiedButton.WhileActiveOnce(NewShoot(&m_Shooter,&m_Feeder) ); 
 
-  m_ZButton.WhenPressed(AdjustTurretLeftGasp(&m_Turret));  
-  m_HButton.WhenPressed(AdjustTurretRightGasp(&m_Turret)); 
+m_AdjustableHood.SetDefaultCommand(
+      AdjustHood(&m_AdjustableHood,
+        [this] { return m_DriverControllerRight.GetY(); }));
+
+
+m_Turret.SetDefaultCommand(
+      AdjustTurretGasp(&m_Turret,
+        [this] { return m_DriverControllerLeft.GetZ(); }));
+
+  
 
 
   // Winch Buttons
-  m_YButton.WhileHeld(LiftRobot(&m_Winch));
+  //m_YButton.WhileHeld(LiftRobot(&m_Winch));
   // m_xButton.WhileHeld(DropRobot(&m_winch));
 
   // TelescopicArm Buttons

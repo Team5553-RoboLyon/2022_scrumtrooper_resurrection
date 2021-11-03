@@ -10,9 +10,9 @@
 
 #define BUFFER_SIZE 3
 
-class AdjustTurretLeftGasp : public frc2::CommandHelper<frc2::CommandBase, AdjustTurretLeftGasp> {
+class AdjustTurretGasp : public frc2::CommandHelper<frc2::CommandBase, AdjustTurretGasp> {
  public:
-    AdjustTurretLeftGasp(Turret* pturret);
+    AdjustTurretGasp(Turret* pturret,std::function<double()> turn);
 
   void Initialize() override;
 
@@ -24,5 +24,6 @@ class AdjustTurretLeftGasp : public frc2::CommandHelper<frc2::CommandBase, Adjus
 
  private:
   Turret* m_pTurret;
+  std::function<double()> m_turn;
   
 };

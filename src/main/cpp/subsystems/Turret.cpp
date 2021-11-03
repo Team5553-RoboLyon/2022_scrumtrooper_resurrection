@@ -17,39 +17,13 @@ Turret::Turret()
   //Disable();
 }
 
-//void Turret::UseOutput(double output, double setpoint) {
-//  m_Motor.Set(std::clamp(output, -TURRET_MAX_SPEED, TURRET_MAX_SPEED));
-//}
-
-//double Turret::GetMeasurement() { return m_Encoder.GetDistance(); }
-
-//void Turret::SetClampedSetpoint(double setpoint) {
-//  SetSetpoint(std::clamp(setpoint, -TURRET_MAX_POSITION, TURRET_MAX_POSITION));
-//}
-
-//void Turret::Stop() {
-//  if (!IsEnabled()) m_Motor.StopMotor();
-//}
-
-//void Turret::TurnLeft() {
- // if (!IsEnabled()) m_Motor.Set(-TURRET_SPEED);
-//}
-
-//void Turret::TurnRight() {
- // if (!IsEnabled()) m_Motor.Set(TURRET_SPEED);
-//}
 
 void Turret::Stop() 
 {
   m_TurretMotor.Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput,0.0);
 }
-
-void Turret::TurnLeft() 
+void Turret::Turn(double speed) 
 {
-  m_TurretMotor.Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput,-TURRET_SPEED);
+  m_TurretMotor.Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput,speed*TURRET_SPEED);
 }
 
-void Turret::TurnRight() 
-{
-  m_TurretMotor.Set(ctre::phoenix::motorcontrol::ControlMode::PercentOutput,TURRET_SPEED);
-}

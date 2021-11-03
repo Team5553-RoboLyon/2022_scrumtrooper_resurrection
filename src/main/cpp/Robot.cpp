@@ -22,7 +22,6 @@ void Robot::RobotPeriodic() { frc2::CommandScheduler::GetInstance().Run(); }
 void Robot::DisabledInit() {
   m_Container.m_Drivetrain.SetIdleMode(rev::CANSparkMax::IdleMode::kCoast);
   // Remet à zéro le controlleur le PID ( dont le setpoint ) du volet
-  m_Container.m_AdjustableHood.Disable();
 }
 
 void Robot::DisabledPeriodic() {}
@@ -30,9 +29,6 @@ void Robot::DisabledPeriodic() {}
 void Robot::AutonomousInit() {
   m_Container.m_Intake.Close();
   m_Container.m_Drivetrain.SetIdleMode(rev::CANSparkMax::IdleMode::kBrake);
-  m_Container.m_AdjustableHood.ResetEncoder();
-  m_Container.m_TelescopicArm.ResetEncoder();
-  m_pAutonomousCommand = m_Container.GetAutonomousCommand();
 
   if (m_pAutonomousCommand != nullptr) {
     m_pAutonomousCommand->Schedule();

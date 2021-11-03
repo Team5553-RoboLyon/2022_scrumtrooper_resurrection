@@ -14,14 +14,13 @@
 #include <frc2/command/button/JoystickButton.h>
 #include <frc2/command/button/POVButton.h>
 
-#include "subsystems/AdjustableHood.h"
 #include "subsystems/Drivetrain.h"
 #include "subsystems/Feeder.h"
 #include "subsystems/Intake.h"
 #include "subsystems/Shooter.h"
-#include "subsystems/TelescopicArm.h"
 #include "subsystems/Turret.h"
-#include "subsystems/Winch.h"
+#include "subsystems/AdjustableHood.h"
+
 
 class RobotContainer {
  public:
@@ -31,12 +30,11 @@ class RobotContainer {
 
   Drivetrain m_Drivetrain;
   Feeder m_Feeder;
-  AdjustableHood m_AdjustableHood;
   Intake m_Intake;
   Shooter m_Shooter;
-  TelescopicArm m_TelescopicArm;
   Turret m_Turret;
-  Winch m_Winch;
+  AdjustableHood m_AdjustableHood;
+  
 
  private:
   frc::Joystick m_DriverControllerLeft{0};

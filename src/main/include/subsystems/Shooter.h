@@ -14,7 +14,7 @@
 #include "Constants.h"
 
 #define TOTAL_CHARGE_TIME 1.5
-#define READY_SPEED 4000
+#define READY_SPEED 4500
 
 class Shooter : public frc2::SubsystemBase {
  public:
